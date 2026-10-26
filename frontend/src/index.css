@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 240 11% 4%;
+        --foreground: 60 9% 96%;
+        --card: 240 8% 8%;
+        --card-foreground: 60 9% 96%;
+        --popover: 240 8% 8%;
+        --popover-foreground: 60 9% 96%;
+        --primary: 72 100% 50%;
+        --primary-foreground: 240 11% 4%;
+        --secondary: 240 6% 10%;
+        --secondary-foreground: 60 9% 96%;
+        --muted: 240 6% 10%;
+        --muted-foreground: 240 5% 65%;
+        --accent: 72 100% 50%;
+        --accent-foreground: 240 11% 4%;
+        --destructive: 0 72% 51%;
+        --destructive-foreground: 60 9% 96%;
+        --border: 240 6% 15%;
+        --input: 240 6% 15%;
+        --ring: 72 100% 50%;
+        --radius: 0.25rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+    body {
+        @apply text-foreground antialiased;
+        background-color: #08080a;
+        font-family: "Manrope", "IBM Plex Sans Arabic", sans-serif;
+        overflow-x: hidden;
+    }
+    html[lang="ar"] body {
+        font-family: "IBM Plex Sans Arabic", "Tajawal", "Manrope", sans-serif;
+    }
+    ::selection {
+        background: #ccff00;
+        color: #08080a;
+    }
+    :focus-visible {
+        outline: 2px solid #ccff00;
+        outline-offset: 2px;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #08080a;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #27272a;
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ccff00;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
+
+.font-mono-x {
+    font-family: "JetBrains Mono", monospace;
+}
+
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes marquee-x {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+.marquee-track {
+    animation: marquee-x 42s linear infinite;
+}
+html[dir="rtl"] .marquee-track {
+    animation-direction: reverse;
+}
+
+.text-stroke {
+    -webkit-text-stroke: 1px rgba(247, 247, 244, 0.28);
+    color: transparent;
+}
+
+.spotlight-img {
+    filter: saturate(0.85) contrast(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
